@@ -1,34 +1,23 @@
-//recebe um par ordenado (x,y) e retorna um array de pares (x,y)
-//cada um deles possui x e y menor ou igual ao par recebido em ordem crescente
-//pelo que entendi o y é aumentado até ele dar o número que confere a entrada dele
-//depois ele aumenta 1 no x e volta a aumentar o y até novamente chegar ao
-//mesmo número que confere a entrada, e assim até os dois números conferirem
-//a entrada
-// eu quero que faça o teste se o segundo elemento do array num é igual o segundo elemento
-//do array interval que foi o que eu criei, assim aumentar ele até que sejam iguais
-// depois vai pra outro if que vai zerar este segundo elemento do interval e adicionar 1 ao primeiro
-//elemento do interval
-// o outro if vai testar se o primeiro elemento do interval já está igual o do num
-const interval = [[5,3]];
-interval.push([0, 0]);
-const cordinates = (num) => {
-  do {
-    if (interval[interval.length - 1][1] != num[1]) {
-      const y = [...interval];
-      interval.push(y[y.length - 1]);
-      interval[interval.length - 1][1] += 1;
-    } else if (interval[interval.length - 1][0] != num[0]) {
-      interval[interval.length - 1][0] += 1;
-      interval[interval.length - 1][1] = 0;
-      console.log('ola mundo')
-    } else {
-     
+/* O meu erro no antigo codigo foi não entender bem o conceito de matrizes
+e tentar utilizar uma forma bem complexa de se fazer manipulando arrays, porem
+o meu aprendizado foi que as arrays são ponteiros que mesmo sendo declarada uma
+nova variavel com o conteúdo do array, o original ainda vai ser modificado
+devido a logica dos ponteiros */
+/* Indo para a solução correta agora, um array bidimensional proporiona que
+este exercicio seja feito de forma correta. Utilizando o for cada vez que passa
+pelo primeiro for é adicionado 1, e o segundo for é adicionado até sair da condição dele
+sendo assim voltando para o primeiro for e adicionando mais 1 com o segundo for sendo zerado
+devido a condição e o codigo rodando assim até que o primeiro for satisfaçã a condição
+de montagem da matriz, vendo o codigo fica bem mais claro, observe. */
+
+const cordinates = (pair) => {
+  const intervals = [];
+  for (i = 0; i <= pair[0]; i++) {
+    for (j = 0; j <= pair[1]; j++) {
+      intervals.push([i, j]);
     }
-    console.log(interval);
-  } while (
-    interval[interval.length - 1][0] != num[0] &&
-    interval[interval.length - 1][1] != num[1]
-  );
+  }
+  console.log(intervals);
 };
 
-cordinates([2, 2]);
+cordinates([-3, -3]);
